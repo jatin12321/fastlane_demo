@@ -4,6 +4,7 @@ platform :android do
   desc "Upload to firebase"
    lane :test do
     sh('flutter build apk')
+    sh('./rename_apk_name.sh')
     release = firebase_app_distribution(
                     app: "1:378784049028:android:25def2d5a15e225be5dfd1",
                     groups: "beta",
