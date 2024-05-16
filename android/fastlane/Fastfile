@@ -5,11 +5,13 @@ platform :android do
    lane :test do
     sh('flutter build apk')
     sh('./rename_apk_name.sh')
+    apk_name = ENV['APP_APK_NAME']
+    sh("echo #{apk_name}")
     release = firebase_app_distribution(
                     app: "1:378784049028:android:25def2d5a15e225be5dfd1",
                     groups: "beta",
                     release_notes: "App for fastlane",
-                    apk_path: "../build/app/outputs/flutter-apk/app-release.apk",
+                    apk_path: "../build/app/outputs/flutter-apk/#{apk_name}.apk",
                     firebase_cli_path: "/usr/local/bin/firebase",
                     firebase_cli_token: "1//0gQXmeVbnloQBCgYIARAAGBASNwF-L9Irb5djU6GzM4BUBssnhz_HBXK3C3GYNBooRqwgG75Tm3i4gW48w2DMKKsLoRQ1kK-ga38",
                 )
