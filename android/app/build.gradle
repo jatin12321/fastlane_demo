@@ -39,7 +39,7 @@ if (BASE_URL == null) {
 
 System.out.println("------>     Label $label")
 System.out.println("--------->  App id:- $APP_ID")
-System.out.println("--------->  App id:- $BASE_URL")
+System.out.println("--------->  Base url:- $BASE_URL")
 
 android {
     namespace "com.demo.fastlane.fastlane_demo"
