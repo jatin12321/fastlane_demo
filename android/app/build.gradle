@@ -24,6 +24,7 @@ if (flutterVersionName == null) {
 
 def ENV = System.getenv()
 def label = ENV['FASTLANE_APP_NAME']
+
 if (label == null) {
     label = 'Main'
 }
@@ -31,9 +32,14 @@ def APP_ID = ENV['APP_ID']
 if (APP_ID == null) {
     APP_ID = 'com.demo.fastlane.fastlane_demo'
 }
+def BASE_URL = ENV['APP_BASE_URL']
+if (BASE_URL == null) {
+    BASE_URL = 'http://main'
+}
 
 System.out.println("------>     Label $label")
 System.out.println("--------->  App id:- $APP_ID")
+System.out.println("--------->  App id:- $BASE_URL")
 
 android {
     namespace "com.demo.fastlane.fastlane_demo"
@@ -63,8 +69,8 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         resValue 'string', 'app_name', label
+        buildConfigField "String", "APP_BASE_URL", "\"$BASE_URL/\""
     }
-
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.
